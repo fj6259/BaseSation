@@ -48,7 +48,7 @@ let scheduler = {
         for (let taskName of taskNames) {
             let options = tasks[taskName].options
             let willTime = moment(randomDate(options));
-            let waitTime = options.dev ? 3 : Math.floor(Math.random() * 15)
+            let waitTime = options.dev ? 3 : Math.floor(Math.random() * 150)
             if (options) {
                 if (options.isCircle || options.dev) {
                     willTime = moment().startOf('days');
@@ -67,7 +67,7 @@ let scheduler = {
             queues.push({
                 taskName: taskName,
                 taskState: 0,
-                willTime: willTime.format('YYYY-MM-DD 00:00:ss'),
+                willTime: willTime.format('YYYY-MM-DD 00:mm:ss'),
                 waitTime: waitTime
             })
         }
@@ -247,7 +247,7 @@ let scheduler = {
                         let newTask = {}
                         if (ttt.options) {
                             if (!ttt.options.isCircle) {
-                                newTask.taskState = 0
+                                newTask.taskState = 1
                                 isupdate = true
                             }
                             if (ttt.options.isCircle && ttt.options.intervalTime) {
@@ -255,7 +255,7 @@ let scheduler = {
                                 isupdate = true
                             }
                         } else {
-                            newTask.taskState = 0
+                            newTask.taskState = 1
                             isupdate = true
                         }
 
